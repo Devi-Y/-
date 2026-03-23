@@ -393,6 +393,57 @@
             text-align: right;
             margin-top: 5px;
         }
+
+        .agent-section {
+            width: 100%;
+            margin-top: 6px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 36px;
+            padding: 26px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .agent-title {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+        .agent-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 18px;
+        }
+        .agent-card h3 {
+            color: #f5c542;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .agent-card p, .agent-card li {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .agent-card ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        .prompt-box {
+            margin-top: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px dashed rgba(245, 197, 66, 0.4);
+            border-radius: 16px;
+            padding: 12px;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 <body>
@@ -500,6 +551,49 @@
         
         <div class="update-time">
             📅 历史数据基于真实市场收盘价 · 金色圆点为当前输入价格
+        </div>
+    </div>
+</div>
+
+<!-- 新增：飞书双智能体自进化执行框架 -->
+<div class="agent-section">
+    <div class="agent-title">🤖 飞书双智能体「自学习-自进化-自迭代」框架</div>
+    <div class="agent-grid">
+        <div class="agent-card">
+            <h3>1) Freyja：更懂你的个人助理</h3>
+            <p>目标：把你每天的沟通、决策和偏好沉淀为可调用记忆，让回答风格和建议持续贴合你。</p>
+            <ul>
+                <li><strong>感知层：</strong>采集日程、会议纪要、待办、你对回复的“采纳/否决”反馈。</li>
+                <li><strong>记忆层：</strong>建立「人-事-偏好-约束」四类长期记忆，按周去重和置信度更新。</li>
+                <li><strong>反思层：</strong>每周生成“误判清单”，把误判原因转成新规则或提示词。</li>
+                <li><strong>迭代层：</strong>A/B 两版回复策略并行，按完成率、满意度自动保留优胜版本。</li>
+            </ul>
+            <div class="prompt-box" id="freyjaPrompt">【Freyja系统提示词模板】
+你是我的长期助理，优先使用“我的历史偏好与近期上下文”回答。
+每次输出前先做：
+1) 回忆与问题相关的历史偏好；
+2) 给出结论+行动清单+风险提醒；
+3) 标注哪些是事实、哪些是推断；
+4) 记录用户反馈并更新偏好权重。</div>
+        </div>
+        <div class="agent-card">
+            <h3>2) 赏金猎人：黄金投资量化机器人</h3>
+            <p>目标：在风险可控前提下，形成“数据→信号→回测→交易→复盘”的闭环，不断提升策略质量。</p>
+            <ul>
+                <li><strong>数据层：</strong>接入金价、美元指数、美债利率、通胀、汇率、仓位与波动率。</li>
+                <li><strong>策略层：</strong>让模型自动提案多策略（趋势/均值回归/事件驱动）。</li>
+                <li><strong>验证层：</strong>新策略必须通过滚动回测、样本外验证、压力测试后才可上线。</li>
+                <li><strong>风控层：</strong>单笔风险、最大回撤、连续亏损熔断、黑天鹅暂停交易。</li>
+            </ul>
+            <div class="prompt-box" id="hunterPrompt">【赏金猎人系统提示词模板】
+你是黄金量化交易助手。
+要求：先风控后收益。
+每次输出必须包含：
+1) 当前市场状态判断；
+2) 可执行信号（入场/止损/止盈/仓位）；
+3) 回测依据与置信度；
+4) 失败场景和应急方案。
+若风控条件不满足，必须输出“观望”。</div>
         </div>
     </div>
 </div>
